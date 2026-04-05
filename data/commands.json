@@ -1,0 +1,794 @@
+{
+  "commands": [
+    {
+      "id": "git_add_all",
+      "category": "git",
+      "keywords": ["add", "stage", "all", "files"],
+      "command": "git add .",
+      "description": "Add all files to staging area",
+      "flags": [
+        {
+          "flag": "--all",
+          "description": "Also add ignored files",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_add_specific",
+      "category": "git",
+      "keywords": ["add", "stage", "specific", "file"],
+      "command": "git add",
+      "description": "Add specific file to staging area",
+      "flags": [
+        {
+          "flag": "-p",
+          "description": "Interactive patch mode",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_commit",
+      "category": "git",
+      "keywords": ["commit", "save", "changes"],
+      "command": "git commit -m",
+      "description": "Commit staged changes with message",
+      "flags": [
+        {
+          "flag": "-m",
+          "description": "Commit message",
+          "required": true
+        },
+        {
+          "flag": "--amend",
+          "description": "Amend previous commit",
+          "required": false
+        },
+        {
+          "flag": "--no-verify",
+          "description": "Skip pre-commit hooks",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_push",
+      "category": "git",
+      "keywords": ["push", "upload", "remote"],
+      "command": "git push",
+      "description": "Push commits to remote repository",
+      "flags": [
+        {
+          "flag": "--force",
+          "description": "Force push",
+          "required": false
+        },
+        {
+          "flag": "--set-upstream",
+          "description": "Set upstream branch",
+          "required": false
+        },
+        {
+          "flag": "-u",
+          "description": "Set upstream branch (short)",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_pull",
+      "category": "git",
+      "keywords": ["pull", "download", "update"],
+      "command": "git pull",
+      "description": "Pull changes from remote repository",
+      "flags": [
+        {
+          "flag": "--rebase",
+          "description": "Rebase instead of merge",
+          "required": false
+        },
+        {
+          "flag": "--force",
+          "description": "Force pull",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_status",
+      "category": "git",
+      "keywords": ["status", "check", "state"],
+      "command": "git status",
+      "description": "Show working tree status",
+      "flags": [
+        {
+          "flag": "-s",
+          "description": "Short format",
+          "required": false
+        },
+        {
+          "flag": "--porcelain",
+          "description": "Machine-readable format",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_log",
+      "category": "git",
+      "keywords": ["log", "history", "commits"],
+      "command": "git log",
+      "description": "Show commit history",
+      "flags": [
+        {
+          "flag": "--oneline",
+          "description": "Compact format",
+          "required": false
+        },
+        {
+          "flag": "--graph",
+          "description": "Show graph",
+          "required": false
+        },
+        {
+          "flag": "-n",
+          "description": "Limit number of commits",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_diff",
+      "category": "git",
+      "keywords": ["diff", "changes", "compare"],
+      "command": "git diff",
+      "description": "Show changes between commits",
+      "flags": [
+        {
+          "flag": "--staged",
+          "description": "Show staged changes",
+          "required": false
+        },
+        {
+          "flag": "--name-only",
+          "description": "Show only file names",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_checkout",
+      "category": "git",
+      "keywords": ["checkout", "switch", "branch"],
+      "command": "git checkout",
+      "description": "Switch branches or restore files",
+      "flags": [
+        {
+          "flag": "-b",
+          "description": "Create new branch",
+          "required": false
+        },
+        {
+          "flag": "--",
+          "description": "Separate branch from files",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "git_branch",
+      "category": "git",
+      "keywords": ["branch", "branches", "list"],
+      "command": "git branch",
+      "description": "List, create, or delete branches",
+      "flags": [
+        {
+          "flag": "-a",
+          "description": "List all branches",
+          "required": false
+        },
+        {
+          "flag": "-d",
+          "description": "Delete branch",
+          "required": false
+        },
+        {
+          "flag": "-m",
+          "description": "Rename branch",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_run",
+      "category": "docker",
+      "keywords": ["docker", "run", "container"],
+      "command": "docker run",
+      "description": "Run a Docker container",
+      "flags": [
+        {
+          "flag": "-d",
+          "description": "Run in detached mode",
+          "required": false
+        },
+        {
+          "flag": "-p",
+          "description": "Port mapping",
+          "required": false
+        },
+        {
+          "flag": "--name",
+          "description": "Container name",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Volume mount",
+          "required": false
+        },
+        {
+          "flag": "-e",
+          "description": "Environment variable",
+          "required": false
+        },
+        {
+          "flag": "--rm",
+          "description": "Remove container on exit",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_ps",
+      "category": "docker",
+      "keywords": ["docker", "ps", "list", "containers"],
+      "command": "docker ps",
+      "description": "List running containers",
+      "flags": [
+        {
+          "flag": "-a",
+          "description": "Show all containers",
+          "required": false
+        },
+        {
+          "flag": "-q",
+          "description": "Show only container IDs",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_images",
+      "category": "docker",
+      "keywords": ["docker", "images", "list"],
+      "command": "docker images",
+      "description": "List Docker images",
+      "flags": [
+        {
+          "flag": "-a",
+          "description": "Show all images",
+          "required": false
+        },
+        {
+          "flag": "-q",
+          "description": "Show only image IDs",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_build",
+      "category": "docker",
+      "keywords": ["docker", "build", "image"],
+      "command": "docker build",
+      "description": "Build Docker image from Dockerfile",
+      "flags": [
+        {
+          "flag": "-t",
+          "description": "Tag the image",
+          "required": false
+        },
+        {
+          "flag": "--no-cache",
+          "description": "Do not use cache",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_stop",
+      "category": "docker",
+      "keywords": ["docker", "stop", "container"],
+      "command": "docker stop",
+      "description": "Stop running container",
+      "flags": [
+        {
+          "flag": "--time",
+          "description": "Seconds to wait before killing",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_rm",
+      "category": "docker",
+      "keywords": ["docker", "rm", "remove", "container"],
+      "command": "docker rm",
+      "description": "Remove container",
+      "flags": [
+        {
+          "flag": "-f",
+          "description": "Force removal",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Remove associated volumes",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_exec",
+      "category": "docker",
+      "keywords": ["docker", "exec", "execute", "container"],
+      "command": "docker exec",
+      "description": "Execute command in running container",
+      "flags": [
+        {
+          "flag": "-it",
+          "description": "Interactive terminal",
+          "required": false
+        },
+        {
+          "flag": "--user",
+          "description": "Run as specific user",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker_logs",
+      "category": "docker",
+      "keywords": ["docker", "logs", "container"],
+      "command": "docker logs",
+      "description": "Show container logs",
+      "flags": [
+        {
+          "flag": "-f",
+          "description": "Follow logs",
+          "required": false
+        },
+        {
+          "flag": "--tail",
+          "description": "Number of lines to show",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "find_file",
+      "category": "system",
+      "keywords": ["find", "search", "file"],
+      "command": "find . -name",
+      "description": "Find files by name",
+      "flags": [
+        {
+          "flag": "-type",
+          "description": "File type (f for file, d for directory)",
+          "required": false
+        },
+        {
+          "flag": "-iname",
+          "description": "Case-insensitive name search",
+          "required": false
+        },
+        {
+          "flag": "-size",
+          "description": "File size",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "list_files",
+      "category": "system",
+      "keywords": ["list", "files", "directory"],
+      "command": "ls -la",
+      "description": "List all files with details",
+      "flags": [
+        {
+          "flag": "-h",
+          "description": "Human readable sizes",
+          "required": false
+        },
+        {
+          "flag": "-r",
+          "description": "Reverse order",
+          "required": false
+        },
+        {
+          "flag": "-t",
+          "description": "Sort by time",
+          "required": false
+        },
+        {
+          "flag": "-S",
+          "description": "Sort by size",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "copy_files",
+      "category": "system",
+      "keywords": ["copy", "cp", "files"],
+      "command": "cp",
+      "description": "Copy files or directories",
+      "flags": [
+        {
+          "flag": "-r",
+          "description": "Recursive copy",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Verbose output",
+          "required": false
+        },
+        {
+          "flag": "-i",
+          "description": "Interactive prompt",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "move_files",
+      "category": "system",
+      "keywords": ["move", "mv", "rename"],
+      "command": "mv",
+      "description": "Move or rename files",
+      "flags": [
+        {
+          "flag": "-v",
+          "description": "Verbose output",
+          "required": false
+        },
+        {
+          "flag": "-i",
+          "description": "Interactive prompt",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "remove_files",
+      "category": "system",
+      "keywords": ["remove", "rm", "delete"],
+      "command": "rm",
+      "description": "Remove files or directories",
+      "flags": [
+        {
+          "flag": "-r",
+          "description": "Recursive removal",
+          "required": false
+        },
+        {
+          "flag": "-f",
+          "description": "Force removal",
+          "required": false
+        },
+        {
+          "flag": "-i",
+          "description": "Interactive prompt",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "disk_usage",
+      "category": "system",
+      "keywords": ["disk", "usage", "space", "df"],
+      "command": "df -h",
+      "description": "Show disk usage",
+      "flags": [
+        {
+          "flag": "-h",
+          "description": "Human readable sizes",
+          "required": false
+        },
+        {
+          "flag": "-T",
+          "description": "Show filesystem type",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "memory_usage",
+      "category": "system",
+      "keywords": ["memory", "ram", "free"],
+      "command": "free -h",
+      "description": "Show memory usage",
+      "flags": [
+        {
+          "flag": "-h",
+          "description": "Human readable sizes",
+          "required": false
+        },
+        {
+          "flag": "-m",
+          "description": "Show in megabytes",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "process_list",
+      "category": "system",
+      "keywords": ["process", "ps", "list"],
+      "command": "ps aux",
+      "description": "List running processes",
+      "flags": [
+        {
+          "flag": "-a",
+          "description": "Show all users",
+          "required": false
+        },
+        {
+          "flag": "-u",
+          "description": "User format",
+          "required": false
+        },
+        {
+          "flag": "-x",
+          "description": "Include processes without terminals",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "kill_process",
+      "category": "system",
+      "keywords": ["kill", "process", "stop"],
+      "command": "kill",
+      "description": "Kill a process",
+      "flags": [
+        {
+          "flag": "-9",
+          "description": "Force kill",
+          "required": false
+        },
+        {
+          "flag": "-15",
+          "description": "Graceful termination",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "system_info",
+      "category": "system",
+      "keywords": ["system", "info", "uname"],
+      "command": "uname -a",
+      "description": "Show system information",
+      "flags": [
+        {
+          "flag": "-a",
+          "description": "All information",
+          "required": false
+        },
+        {
+          "flag": "-r",
+          "description": "Kernel release",
+          "required": false
+        },
+        {
+          "flag": "-m",
+          "description": "Machine hardware",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "network_ping",
+      "category": "network",
+      "keywords": ["ping", "network", "test"],
+      "command": "ping",
+      "description": "Test network connectivity",
+      "flags": [
+        {
+          "flag": "-c",
+          "description": "Number of packets",
+          "required": false
+        },
+        {
+          "flag": "-i",
+          "description": "Interval between packets",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "network_curl",
+      "category": "network",
+      "keywords": ["curl", "download", "http"],
+      "command": "curl",
+      "description": "Transfer data from URL",
+      "flags": [
+        {
+          "flag": "-o",
+          "description": "Output file",
+          "required": false
+        },
+        {
+          "flag": "-O",
+          "description": "Save with original name",
+          "required": false
+        },
+        {
+          "flag": "-L",
+          "description": "Follow redirects",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "network_wget",
+      "category": "network",
+      "keywords": ["wget", "download", "http"],
+      "command": "wget",
+      "description": "Download files from web",
+      "flags": [
+        {
+          "flag": "-O",
+          "description": "Output file",
+          "required": false
+        },
+        {
+          "flag": "-r",
+          "description": "Recursive download",
+          "required": false
+        },
+        {
+          "flag": "-q",
+          "description": "Quiet mode",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "network_ports",
+      "category": "network",
+      "keywords": ["ports", "netstat", "listening"],
+      "command": "netstat -tlnp",
+      "description": "Show listening ports",
+      "flags": [
+        {
+          "flag": "-t",
+          "description": "TCP ports",
+          "required": false
+        },
+        {
+          "flag": "-u",
+          "description": "UDP ports",
+          "required": false
+        },
+        {
+          "flag": "-n",
+          "description": "Numeric addresses",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "archive_tar",
+      "category": "system",
+      "keywords": ["tar", "archive", "compress"],
+      "command": "tar",
+      "description": "Create or extract archives",
+      "flags": [
+        {
+          "flag": "-c",
+          "description": "Create archive",
+          "required": false
+        },
+        {
+          "flag": "-x",
+          "description": "Extract archive",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Verbose output",
+          "required": false
+        },
+        {
+          "flag": "-f",
+          "description": "Archive file",
+          "required": false
+        },
+        {
+          "flag": "-z",
+          "description": "Gzip compression",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "permissions_chmod",
+      "category": "system",
+      "keywords": ["chmod", "permissions", "mode"],
+      "command": "chmod",
+      "description": "Change file permissions",
+      "flags": [
+        {
+          "flag": "-R",
+          "description": "Recursive",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Verbose output",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "ownership_chown",
+      "category": "system",
+      "keywords": ["chown", "ownership", "user"],
+      "command": "chown",
+      "description": "Change file ownership",
+      "flags": [
+        {
+          "flag": "-R",
+          "description": "Recursive",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Verbose output",
+          "required": false
+        }
+      ],
+      "usage_count": 0
+    }
+  ]
+}

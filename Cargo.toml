@@ -1,0 +1,37 @@
+[package]
+name = "bassist"
+version = "0.1.0"
+edition = "2021"
+authors = ["bAssist Contributors"]
+description = "A high-performance terminal command assistant tool"
+license = "MIT"
+repository = "https://github.com/user/bassist"
+homepage = "https://github.com/user/bassist"
+readme = "README.md"
+keywords = ["terminal", "cli", "command", "assistant", "tui"]
+categories = ["command-line-utilities", "development-tools"]
+
+[[bin]]
+name = "bassist"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clap = { version = "4.4", features = ["derive"] }
+crossterm = "0.27"
+ratatui = "0.24"
+anyhow = "1.0"
+dirs = "5.0"
+uuid = { version = "1.6", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true
