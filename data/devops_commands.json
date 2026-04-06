@@ -1,0 +1,598 @@
+{
+  "commands": [
+    {
+      "id": "k8s_get_pods",
+      "category": "kubernetes",
+      "keywords": ["list", "show", "pods"],
+      "command": "kubectl get pods",
+      "description": "List all pods in current namespace",
+      "flags": [
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        },
+        {
+          "flag": "-w",
+          "description": "Watch for changes",
+          "required": false
+        },
+        {
+          "flag": "-o",
+          "description": "Output format",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Always check current namespace with 'kubectl config view --minify'",
+        "Use -o wide for more information",
+        "Use -w to monitor pod status changes"
+      ],
+      "prerequisites": ["kubectl configured", "cluster access"]
+    },
+    {
+      "id": "k8s_get_deployments",
+      "category": "kubernetes",
+      "keywords": ["list", "show", "deployments"],
+      "command": "kubectl get deployments",
+      "description": "List all deployments",
+      "flags": [
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        },
+        {
+          "flag": "-o",
+          "description": "Output format",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Check desired vs available replicas",
+        "Use -o wide for additional information"
+      ],
+      "prerequisites": ["kubectl configured", "cluster access"]
+    },
+    {
+      "id": "k8s_apply_yaml",
+      "category": "kubernetes",
+      "keywords": ["apply", "deploy", "yaml"],
+      "command": "kubectl apply -f",
+      "description": "Apply configuration from YAML file",
+      "flags": [
+        {
+          "flag": "-f",
+          "description": "Filename",
+          "required": true
+        },
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        },
+        {
+          "flag": "--dry-run",
+          "description": "Show what would be applied",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "caution",
+      "best_practices": [
+        "Always use --dry-run=client first",
+        "Validate YAML syntax before applying",
+        "Check current namespace"
+      ],
+      "prerequisites": ["kubectl configured", "valid YAML file"]
+    },
+    {
+      "id": "k8s_delete_deployment",
+      "category": "kubernetes",
+      "keywords": ["delete", "remove", "deployment"],
+      "command": "kubectl delete deployment",
+      "description": "Delete a deployment",
+      "flags": [
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        },
+        {
+          "flag": "--force",
+          "description": "Force deletion",
+          "required": false
+        },
+        {
+          "flag": "--grace-period",
+          "description": "Grace period in seconds",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "dangerous",
+      "best_practices": [
+        "Verify deployment name before deletion",
+        "Check if other resources depend on this deployment",
+        "Consider scaling down to 0 instead of deleting"
+      ],
+      "prerequisites": ["kubectl configured", "deployment name"]
+    },
+    {
+      "id": "k8s_scale_deployment",
+      "category": "kubernetes",
+      "keywords": ["scale", "replicas", "deployment"],
+      "command": "kubectl scale deployment",
+      "description": "Scale deployment to specified replicas",
+      "flags": [
+        {
+          "flag": "--replicas",
+          "description": "Number of replicas",
+          "required": true
+        },
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "caution",
+      "best_practices": [
+        "Check current replica count before scaling",
+        "Monitor pod status after scaling",
+        "Consider resource limits and availability"
+      ],
+      "prerequisites": ["kubectl configured", "deployment name"]
+    },
+    {
+      "id": "k8s_logs",
+      "category": "kubernetes",
+      "keywords": ["logs", "container", "pod"],
+      "command": "kubectl logs",
+      "description": "Show container logs",
+      "flags": [
+        {
+          "flag": "-f",
+          "description": "Follow logs",
+          "required": false
+        },
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        },
+        {
+          "flag": "--tail",
+          "description": "Number of lines to show",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Use -f to monitor real-time logs",
+        "Use --tail to limit output",
+        "Check pod name and namespace"
+      ],
+      "prerequisites": ["kubectl configured", "pod name"]
+    },
+    {
+      "id": "k8s_describe_pod",
+      "category": "kubernetes",
+      "keywords": ["describe", "details", "pod"],
+      "command": "kubectl describe pod",
+      "description": "Show detailed pod information",
+      "flags": [
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Use for troubleshooting pod issues",
+        "Check events section for errors",
+        "Verify resource requests and limits"
+      ],
+      "prerequisites": ["kubectl configured", "pod name"]
+    },
+    {
+      "id": "tf_init",
+      "category": "terraform",
+      "keywords": ["init", "initialize", "terraform"],
+      "command": "terraform init",
+      "description": "Initialize Terraform working directory",
+      "flags": [
+        {
+          "flag": "-migrate-state",
+          "description": "Migrate state",
+          "required": false
+        },
+        {
+          "flag": "-backend-config",
+          "description": "Backend configuration",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Run after adding new providers",
+        "Check backend configuration",
+        "Verify provider versions"
+      ],
+      "prerequisites": ["Terraform files", "backend configuration"]
+    },
+    {
+      "id": "tf_plan",
+      "category": "terraform",
+      "keywords": ["plan", "preview", "terraform"],
+      "command": "terraform plan",
+      "description": "Show execution plan",
+      "flags": [
+        {
+          "flag": "-out",
+          "description": "Save plan to file",
+          "required": false
+        },
+        {
+          "flag": "-var",
+          "description": "Variable value",
+          "required": false
+        },
+        {
+          "flag": "-var-file",
+          "description": "Variable file",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Always review plan before applying",
+        "Save plan for team review",
+        "Check for resource destruction"
+      ],
+      "prerequisites": ["Terraform initialized", "configuration files"]
+    },
+    {
+      "id": "tf_apply",
+      "category": "terraform",
+      "keywords": ["apply", "deploy", "terraform"],
+      "command": "terraform apply",
+      "description": "Apply infrastructure changes",
+      "flags": [
+        {
+          "flag": "-auto-approve",
+          "description": "Skip interactive approval",
+          "required": false
+        },
+        {
+          "flag": "-var",
+          "description": "Variable value",
+          "required": false
+        },
+        {
+          "flag": "-var-file",
+          "description": "Variable file",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "caution",
+      "best_practices": [
+        "Always run 'terraform plan' first",
+        "Never use -auto-approve in production",
+        "Review resource changes carefully"
+      ],
+      "prerequisites": ["Terraform plan", "configuration files"]
+    },
+    {
+      "id": "tf_destroy",
+      "category": "terraform",
+      "keywords": ["destroy", "cleanup", "terraform"],
+      "command": "terraform destroy",
+      "description": "Destroy all infrastructure",
+      "flags": [
+        {
+          "flag": "-auto-approve",
+          "description": "Skip interactive approval",
+          "required": false
+        },
+        {
+          "flag": "-target",
+          "description": "Target specific resource",
+          "required": false
+        },
+        {
+          "flag": "-var",
+          "description": "Variable value",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "dangerous",
+      "best_practices": [
+        "Double-check you're in correct environment",
+        "Use -target for selective destruction",
+        "Backup important data before destroying"
+      ],
+      "prerequisites": ["Terraform state", "confirmation"]
+    },
+    {
+      "id": "tf_validate",
+      "category": "terraform",
+      "keywords": ["validate", "check", "terraform"],
+      "command": "terraform validate",
+      "description": "Validate configuration files",
+      "flags": [],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Run before committing changes",
+        "Use in CI/CD pipelines",
+        "Check syntax and references"
+      ],
+      "prerequisites": ["Terraform files"]
+    },
+    {
+      "id": "docker_build",
+      "category": "docker",
+      "keywords": ["build", "image", "docker"],
+      "command": "docker build",
+      "description": "Build Docker image from Dockerfile",
+      "flags": [
+        {
+          "flag": "-t",
+          "description": "Tag the image",
+          "required": false
+        },
+        {
+          "flag": "-f",
+          "description": "Dockerfile path",
+          "required": false
+        },
+        {
+          "flag": "--no-cache",
+          "description": "Do not use cache",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Use specific image tags instead of latest",
+        "Use multi-stage builds for smaller images",
+        "Optimize Dockerfile for caching"
+      ],
+      "prerequisites": ["Dockerfile", "Docker daemon"]
+    },
+    {
+      "id": "docker_run_production",
+      "category": "docker",
+      "keywords": ["docker", "run", "container", "production"],
+      "command": "docker run -d --restart unless-stopped",
+      "description": "Run container in production mode",
+      "flags": [
+        {
+          "flag": "-p",
+          "description": "Port mapping",
+          "required": false
+        },
+        {
+          "flag": "--name",
+          "description": "Container name",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Volume mount",
+          "required": false
+        },
+        {
+          "flag": "-e",
+          "description": "Environment variable",
+          "required": false
+        },
+        {
+          "flag": "--memory",
+          "description": "Memory limit",
+          "required": false
+        },
+        {
+          "flag": "--cpus",
+          "description": "CPU limit",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "caution",
+      "best_practices": [
+        "Always set resource limits",
+        "Use specific image tags",
+        "Implement health checks",
+        "Don't run as root user"
+      ],
+      "prerequisites": ["Docker image", "Docker daemon"]
+    },
+    {
+      "id": "docker_compose_up",
+      "category": "docker",
+      "keywords": ["docker-compose", "up", "start"],
+      "command": "docker-compose up -d",
+      "description": "Start services with docker-compose",
+      "flags": [
+        {
+          "flag": "-f",
+          "description": "Compose file",
+          "required": false
+        },
+        {
+          "flag": "--build",
+          "description": "Build images before starting",
+          "required": false
+        },
+        {
+          "flag": "--scale",
+          "description": "Scale service",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Use -d for detached mode",
+        "Check compose file syntax",
+        "Verify service dependencies"
+      ],
+      "prerequisites": ["docker-compose.yml", "Docker daemon"]
+    },
+    {
+      "id": "aws_ec2_list",
+      "category": "aws",
+      "keywords": ["aws", "ec2", "list", "instances"],
+      "command": "aws ec2 describe-instances",
+      "description": "List EC2 instances",
+      "flags": [
+        {
+          "flag": "--region",
+          "description": "AWS region",
+          "required": false
+        },
+        {
+          "flag": "--filters",
+          "description": "Filters",
+          "required": false
+        },
+        {
+          "flag": "--query",
+          "description": "JMESPath query",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Use --query to filter output",
+        "Check region before running",
+        "Use filters for specific instances"
+      ],
+      "prerequisites": ["AWS CLI configured", "AWS credentials"]
+    },
+    {
+      "id": "aws_s3_ls",
+      "category": "aws",
+      "keywords": ["aws", "s3", "list", "buckets"],
+      "command": "aws s3 ls",
+      "description": "List S3 buckets",
+      "flags": [
+        {
+          "flag": "--recursive",
+          "description": "Recursive listing",
+          "required": false
+        },
+        {
+          "flag": "--human-readable",
+          "description": "Human readable sizes",
+          "required": false
+        },
+        {
+          "flag": "--summarize",
+          "description": "Show summary",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "safe",
+      "best_practices": [
+        "Use --human-readable for better output",
+        "Check bucket permissions",
+        "Use --summarize for storage overview"
+      ],
+      "prerequisites": ["AWS CLI configured", "S3 permissions"]
+    },
+    {
+      "id": "ansible_playbook",
+      "category": "ansible",
+      "keywords": ["ansible", "playbook", "run"],
+      "command": "ansible-playbook",
+      "description": "Run Ansible playbook",
+      "flags": [
+        {
+          "flag": "-i",
+          "description": "Inventory file",
+          "required": false
+        },
+        {
+          "flag": "--check",
+          "description": "Dry run mode",
+          "required": false
+        },
+        {
+          "flag": "--diff",
+          "description": "Show differences",
+          "required": false
+        },
+        {
+          "flag": "-v",
+          "description": "Verbose output",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "caution",
+      "best_practices": [
+        "Always use --check first",
+        "Test on staging environment",
+        "Review playbook before running",
+        "Use --diff to see changes"
+      ],
+      "prerequisites": ["Ansible installed", "playbook file", "inventory"]
+    },
+    {
+      "id": "helm_install",
+      "category": "kubernetes",
+      "keywords": ["helm", "install", "chart"],
+      "command": "helm install",
+      "description": "Install Helm chart",
+      "flags": [
+        {
+          "flag": "-f",
+          "description": "Values file",
+          "required": false
+        },
+        {
+          "flag": "-n",
+          "description": "Namespace",
+          "required": false
+        },
+        {
+          "flag": "--dry-run",
+          "description": "Show what would be installed",
+          "required": false
+        },
+        {
+          "flag": "--debug",
+          "description": "Debug output",
+          "required": false
+        }
+      ],
+      "usage_count": 0,
+      "safety_level": "caution",
+      "best_practices": [
+        "Use --dry-run first",
+        "Verify chart values",
+        "Check namespace",
+        "Review dependencies"
+      ],
+      "prerequisites": ["Helm installed", "Kubernetes cluster", "chart"]
+    }
+  ]
+}

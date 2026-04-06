@@ -44,6 +44,22 @@ impl FuzzyMatcher {
         }
     }
     
+    /// Find the best matching commands for a query with context
+    pub fn find_matches_with_context(&self, query: &str, commands: &[Command], limit: usize, context: &str) -> Vec<CommandMatch> {
+        let mut matches: Vec<CommandMatch> = commands
+            .iter()
+            .map(|cmd| self.calculate_match_score_with_context(query, cmd, context))
+            .filter(|match_| match_.score > 0.0)
+            .collect();
+        
+        // Sort by score (descending)
+        matches.sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap_or(Ordering::Equal));
+        
+        // Return top matches
+        matches.truncate(limit);
+        matches
+    }
+    
     /// Find the best matching commands for a query
     pub fn find_matches(&self, query: &str, commands: &[Command], limit: usize) -> Vec<CommandMatch> {
         let mut matches: Vec<CommandMatch> = commands
@@ -58,6 +74,36 @@ impl FuzzyMatcher {
         // Return top matches
         matches.truncate(limit);
         matches
+    }
+    
+    /// Calculate match score for a single command with context
+    fn calculate_match_score_with_context(&self, query: &str, command: &Command, context: &str) -> CommandMatch {
+        let query_lower = query.to_lowercase();
+        let mut matched_keywords = Vec::new();
+        
+        // Calculate keyword match score
+        let keyword_score = self.calculate_keyword_score(&query_lower, command, &mut matched_keywords);
+        
+        // Calculate string similarity score
+        let similarity_score = self.calculate_similarity_score(&query_lower, command);
+        
+        // Calculate usage frequency score (normalized)
+        let usage_score = self.calculate_usage_score(command);
+        
+        // Calculate context relevance score
+        let context_score = self.calculate_context_score(command, context);
+        
+        // Combine scores with weights
+        let total_score = (keyword_score * self.keyword_weight)
+            + (similarity_score * self.similarity_weight)
+            + (usage_score * self.usage_weight)
+            + (context_score * 0.2); // Context weight
+        
+        CommandMatch {
+            command: command.clone(),
+            score: total_score,
+            matched_keywords,
+        }
     }
     
     /// Calculate match score for a single command
@@ -132,6 +178,43 @@ impl FuzzyMatcher {
     fn calculate_usage_score(&self, command: &Command) -> f64 {
         // Simple logarithmic scaling for usage frequency
         (command.usage_count as f64 + 1.0).ln() / 10.0
+    }
+    
+    /// Calculate context relevance score
+    fn calculate_context_score(&self, command: &Command, context: &str) -> f64 {
+        let mut score = 0.0;
+        
+        // Boost score if command category matches current tool
+        if command.category == context {
+            score += 0.8;
+        }
+        
+        // Simple context-based scoring
+        match context {
+            "kubernetes" => {
+                if command.category == "kubernetes" {
+                    score += 0.5;
+                }
+            }
+            "terraform" => {
+                if command.category == "terraform" {
+                    score += 0.5;
+                }
+            }
+            "docker" => {
+                if command.category == "docker" {
+                    score += 0.5;
+                }
+            }
+            "git" => {
+                if command.category == "git" {
+                    score += 0.5;
+                }
+            }
+            _ => {}
+        }
+        
+        score
     }
     
     /// Calculate Levenshtein distance between two strings

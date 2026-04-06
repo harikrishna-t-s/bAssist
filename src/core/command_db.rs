@@ -34,6 +34,12 @@ pub struct Command {
     pub flags: Vec<CommandFlag>,
     /// Usage frequency counter
     pub usage_count: u64,
+    /// Safety level for the command
+    pub safety_level: Option<String>,
+    /// Best practices for this command
+    pub best_practices: Option<Vec<String>>,
+    /// Prerequisites for running this command
+    pub prerequisites: Option<Vec<String>>,
 }
 
 /// Represents a command flag with its description
@@ -171,6 +177,12 @@ impl CommandDatabase {
                     },
                 ],
                 usage_count: 0,
+                safety_level: Some("safe".to_string()),
+                best_practices: Some(vec![
+                    "Review files before adding".to_string(),
+                    "Use .gitignore to exclude unwanted files".to_string(),
+                ]),
+                prerequisites: Some(vec!["git repository".to_string()]),
             },
             Command {
                 id: "git_commit".to_string(),
@@ -191,6 +203,12 @@ impl CommandDatabase {
                     },
                 ],
                 usage_count: 0,
+                safety_level: Some("safe".to_string()),
+                best_practices: Some(vec![
+                    "Write descriptive commit messages".to_string(),
+                    "Commit frequently with logical changes".to_string(),
+                ]),
+                prerequisites: Some(vec!["staged files".to_string(), "git repository".to_string()]),
             },
             Command {
                 id: "git_push".to_string(),
@@ -211,6 +229,12 @@ impl CommandDatabase {
                     },
                 ],
                 usage_count: 0,
+                safety_level: Some("caution".to_string()),
+                best_practices: Some(vec![
+                    "Pull before push to avoid conflicts".to_string(),
+                    "Avoid force pushing to shared branches".to_string(),
+                ]),
+                prerequisites: Some(vec!["remote repository".to_string(), "committed changes".to_string()]),
             },
             Command {
                 id: "docker_run".to_string(),
@@ -236,6 +260,12 @@ impl CommandDatabase {
                     },
                 ],
                 usage_count: 0,
+                safety_level: Some("safe".to_string()),
+                best_practices: Some(vec![
+                    "Use specific image tags instead of latest".to_string(),
+                    "Set resource limits for production containers".to_string(),
+                ]),
+                prerequisites: Some(vec!["docker daemon".to_string(), "container image".to_string()]),
             },
             Command {
                 id: "find_file".to_string(),
@@ -256,6 +286,12 @@ impl CommandDatabase {
                     },
                 ],
                 usage_count: 0,
+                safety_level: Some("safe".to_string()),
+                best_practices: Some(vec![
+                    "Be specific with search patterns".to_string(),
+                    "Use -type to filter results".to_string(),
+                ]),
+                prerequisites: Some(vec!["file system access".to_string()]),
             },
             Command {
                 id: "list_files".to_string(),
@@ -281,6 +317,12 @@ impl CommandDatabase {
                     },
                 ],
                 usage_count: 0,
+                safety_level: Some("safe".to_string()),
+                best_practices: Some(vec![
+                    "Use -h for human-readable sizes".to_string(),
+                    "Combine with grep for filtering".to_string(),
+                ]),
+                prerequisites: Some(vec!["directory access".to_string()]),
             },
         ]
     }

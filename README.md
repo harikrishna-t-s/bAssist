@@ -147,27 +147,75 @@ bassist -s "list all containers"
 - Linux or macOS
 - Bash shell
 
-## Installation Methods
+## Installation
 
-### Method 1: Install Script (Recommended)
+### Quick Install
 ```bash
-curl -sSL https://raw.githubusercontent.com/user/bassist/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/user/bassistant/main/install.sh | bash
 ```
 
-### Method 2: Manual Installation
+### Download and Install
 ```bash
-git clone https://github.com/user/bassist.git
-cd bassist
+curl -O https://raw.githubusercontent.com/user/bassistant/main/install.sh
+chmod +x install.sh
+./install.sh install
+```
+
+### Manual Installation
+```bash
+git clone https://github.com/user/bassistant.git
+cd bassistant
 cargo build --release
-sudo cp target/release/bassist /usr/local/bin/
+sudo cp target/release/bassistant /usr/local/bin/bassistant
 ```
 
-### Method 3: Download Binary
+For detailed installation instructions, see [INSTALLATION.md](INSTALLATION.md).
+
+### System Requirements
+- Rust 1.70+
+- Git
+- Bash
+- Linux/macOS (x86_64, aarch64)
+
+## Management Commands
+
+### Installation Management
 ```bash
-wget https://github.com/user/bassist/releases/latest/download/bassist
-chmod +x bassist
-sudo mv bassist /usr/local/bin/
+# Update to latest version
+./install.sh update
+
+# Check for updates
+./install.sh check
+
+# Uninstall bassistant
+./install.sh uninstall
+
+# Create backup
+./install.sh backup
+
+# Rollback to previous version
+./install.sh rollback
 ```
+
+### Advanced Options
+```bash
+# Force reinstall
+./install.sh install --force
+
+# Install with backup
+./install.sh install --backup
+
+# User installation (no sudo)
+./install.sh install --user
+
+# Development installation
+./install.sh install --dev
+```
+
+For complete management guide, see:
+- [UPGRADE.md](UPGRADE.md) - Upgrade instructions
+- [ROLLBACK.md](ROLLBACK.md) - Rollback procedures  
+- [UNINSTALL.md](UNINSTALL.md) - Uninstallation guide
 
 ## Troubleshooting
 
